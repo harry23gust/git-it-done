@@ -1,3 +1,24 @@
+var userFormEl = document.querySelector("#user-form");
+var nameInputEl = document.querySelector("#username");
+var repoContainerEl = document.querySelector("#repos-container");
+var repoSearchTerm = document.querySelector("#repo-search-term");
+
+
+
+var formSubmithandler = function(event) {
+  event.preventDefault();
+  var username = nameInputEl.value.trim();
+
+  if (username) {
+      getUserRepos(username);
+      nameInputEl.value = "";
+  } else {
+      alert("Please enter a GitHub username")
+  }
+  }
+
+
+
 var getUserRepos = function (user) {
     var apiUrl = "https://api.github.com/users/"+user+"/repos";
     fetch(apiUrl)
@@ -17,19 +38,6 @@ var getUserRepos = function (user) {
   });
 }
 
-
-
-var formSubmithandler = function(event) {
-    event.preventDefault();
-    var username = nameInputEl.value.trim();
-
-    if (username) {
-        getUserRepos(username);
-        nameInputEl.value = "";
-    } else {
-        alert("Please enter a GitHub username")
-    }
-    }
 
     var displayRepos = function(repos, searchTerm) {
 
@@ -88,11 +96,7 @@ repoSearchTerm.textContent = searchTerm;
     console.log(event);
 
 
-var userFormEl = document.querySelector("#user-form");
-var nameInputEl = document.querySelector("#username");
 
-var repoContainerEl = document.querySelector("#repos-container");
-var repoSearchTerm = document.querySelector("#repo-search-term");
 
 
 console.log("outside");
